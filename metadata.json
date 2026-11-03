@@ -1,0 +1,9 @@
+{
+  "name": "BAYX Health Monitor - IoT & Telemetría Médica",
+  "description": "Plataforma de monitoreo de signos vitales en tiempo real conectada a ESP32-S3-CAM, gestión de tareas clínicas, alertas y telemetría médica.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
