@@ -59,7 +59,7 @@ export const HardwareApiGuide: React.FC = () => {
   const arduinoCode = `/*
  * BAYX HEALTH MONITOR - ESP32-S3-CAM Client Code
  * Ingeniería de Sistemas - 2026
- * Autores: Kevin Ramirez, David Ruiz, Bayron Ballesteros
+ * Equipo demo: Personal médico, cuidado y soporte IoT
  *
  * Conexión I2C:
  * - OLED SSD1306 (0x3C): SDA, SCL

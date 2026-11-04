@@ -4,7 +4,7 @@
  * BAYX Health Monitor - Full-Stack Express Server with IoT Ingestion & SSE
  */
 
-import express, { Request, Response } from 'express';
+import express, { type Request, type Response, type NextFunction } from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // Enable CORS for IoT devices and external clients
-app.use((req, res, next) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
@@ -111,15 +111,15 @@ let careTasks = [
     scheduledTime: '08:00',
     dueDate: new Date().toISOString().split('T')[0],
     assignedRole: 'Enfermero/a',
-    assignedToName: 'Lic. Kevin Ramirez',
+    assignedToName: 'Enfermera de turno',
     patientId: 'PAT-2026-01',
     completedAt: new Date(Date.now() - 3600000 * 4).toISOString(),
-    completedBy: 'Lic. Kevin Ramirez',
+    completedBy: 'Enfermera de turno',
     notes: 'Signos basales estables. Temp 36.5°C, FC 70 lpm.',
   },
   {
     id: 'task-2',
-    title: 'Administración de Enalapril 10mg',
+    title: 'Administración de medicación',
     description: 'Dosis oral con agua tras el desayuno para control de presión arterial.',
     category: 'medication',
     priority: 'high',
@@ -127,10 +127,10 @@ let careTasks = [
     scheduledTime: '09:00',
     dueDate: new Date().toISOString().split('T')[0],
     assignedRole: 'Cuidador',
-    assignedToName: 'Bayron Ballesteros',
+    assignedToName: 'Cuidador asignado',
     patientId: 'PAT-2026-01',
     completedAt: new Date(Date.now() - 3600000 * 3).toISOString(),
-    completedBy: 'Bayron Ballesteros',
+    completedBy: 'Cuidador asignado',
     notes: 'Medicamento administrado sin complicaciones.',
   },
   {
@@ -143,7 +143,7 @@ let careTasks = [
     scheduledTime: '14:30',
     dueDate: new Date().toISOString().split('T')[0],
     assignedRole: 'Médico',
-    assignedToName: 'Dr. David Ruiz',
+    assignedToName: 'Médico de turno',
     patientId: 'PAT-2026-01',
     notes: 'Verificando sensibilidad del algoritmo de aceleración brusca en ESP32.',
   },
@@ -157,7 +157,7 @@ let careTasks = [
     scheduledTime: '16:00',
     dueDate: new Date().toISOString().split('T')[0],
     assignedRole: 'Cuidador',
-    assignedToName: 'Lic. Kevin Ramirez',
+    assignedToName: 'Cuidador asignado',
     patientId: 'PAT-2026-01',
     notes: 'Evaluar SpO2 antes y después de la sesión de 15 minutos.',
   },
@@ -171,7 +171,7 @@ let careTasks = [
     scheduledTime: '19:00',
     dueDate: new Date().toISOString().split('T')[0],
     assignedRole: 'Médico',
-    assignedToName: 'Dr. David Ruiz',
+    assignedToName: 'Médico de turno',
     patientId: 'PAT-2026-01',
     notes: 'Ajuste de dosis en caso de variaciones térmicas superiores a 37.5°C.',
   },
@@ -202,25 +202,25 @@ let healthAlerts: ServerHealthAlert[] = [
     metricValue: '118 BPM',
     resolved: true,
     resolvedAt: new Date(Date.now() - 3600000 * 1.5).toISOString(),
-    resolvedBy: 'Dr. David Ruiz',
+    resolvedBy: 'Médico de turno',
   },
 ];
 
 // Patient Profile
 const patientProfile = {
   id: 'PAT-2026-01',
-  name: 'David Humberto Ruiz Cárdenas',
-  age: 24,
+  name: 'Paciente Demo BAYX',
+  age: 34,
   gender: 'Masculino',
   bloodType: 'O+',
   condition: 'Monitoreo Ambulatorio Biométrico - Prototipo BAYX',
   roomOrBed: 'Habitación 302 / Sala Observación',
   emergencyContact: {
-    name: 'Kevin Ramirez Medina',
-    relationship: 'Cuidador Clínico / Familiar',
-    phone: '+57 312 456 7890',
+    name: 'Contacto de Emergencia',
+    relationship: 'Familiar / Cuidador',
+    phone: '+57 300 000 0000',
   },
-  assignedPhysician: 'Dr. David Ruiz (Cardiología / Telemedicina)',
+  assignedPhysician: 'Dra. Sofia Romero (Cardiología / Telemedicina)',
   thresholds: {
     minHeartRate: 55,
     maxHeartRate: 115,
@@ -579,9 +579,9 @@ app.get('/api/info', (_req: Request, res: Response) => {
     app: 'BAYX Health Monitor API',
     version: '2.0.0',
     authors: [
-      'Kevin Norberto Ramirez Medina',
-      'David Humberto Ruiz Cardenas',
-      'Bayron Sneyder Ballesteros Molina',
+      'Equipo BAYX Demo',
+      'Equipo de Validación IoT',
+      'Plataforma de Monitoreo Biométrico',
     ],
     project: 'Ingeniería de Sistemas – 2026',
     endpoints: {

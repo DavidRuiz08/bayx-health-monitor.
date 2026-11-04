@@ -298,7 +298,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
           BAYX HEALTH MONITOR · Prototipo IoT con ESP32-CAM & Sensores Biométricos
         </p>
         <p className="mt-1">
-          Ingeniería de Sistemas – 2026 · Autores: Kevin Norberto Ramirez Medina · David Humberto Ruiz Cardenas · Bayron Sneyder Ballesteros Molina
+          Ingeniería de Sistemas – 2026 · Equipo demo BAYX · Datos ficticios para validación de sistema
         </p>
         <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-1">
           Hardware: ESP32-S3-CAM · MAX30102 · MLX90614 · MPU6050 · OLED SSD1306 · Buzzer Piezoeléctrico

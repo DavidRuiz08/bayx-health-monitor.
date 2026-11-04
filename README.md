@@ -1,7 +1,7 @@
 # BAYX Health Monitor - IoT & Telemetría Médica
 
 **Ingeniería de Sistemas – 2026**  
-**Autores:** Kevin Norberto Ramirez Medina · David Humberto Ruiz Cardenas · Bayron Sneyder Ballesteros Molina  
+**Equipo de demo:** Personal clínico ficticio · Soporte tecnológico · Validación de sensores
 **Plataforma de Hardware:** ESP32-S3-CAM (V1.5 / GOOUUU) + MAX30102 + MLX90614 + MPU6050 + SSD1306 + Buzzer Piezoeléctrico.
 
 ---

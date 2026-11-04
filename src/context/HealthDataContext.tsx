@@ -46,18 +46,18 @@ const DEFAULT_VITALS: VitalSigns = {
 
 const DEFAULT_PATIENT: PatientProfile = {
   id: 'PAT-2026-01',
-  name: 'David Humberto Ruiz Cárdenas',
-  age: 24,
+  name: 'Paciente Demo BAYX',
+  age: 34,
   gender: 'Masculino',
   bloodType: 'O+',
   condition: 'Monitoreo Biométrico Continuo - Prototipo BAYX',
   roomOrBed: 'Habitación 302',
   emergencyContact: {
-    name: 'Kevin Ramirez Medina',
-    relationship: 'Cuidador Clínico / Familiar',
-    phone: '+57 312 456 7890',
+    name: 'Contacto de Emergencia',
+    relationship: 'Familiar / Cuidador',
+    phone: '+57 300 000 0000',
   },
-  assignedPhysician: 'Dr. David Ruiz (Cardiología / Telemedicina)',
+  assignedPhysician: 'Dra. Sofia Romero (Cardiología / Telemedicina)',
   thresholds: {
     minHeartRate: 55,
     maxHeartRate: 115,
