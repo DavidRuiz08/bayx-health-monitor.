@@ -20,7 +20,6 @@ import {
   Cpu,
   Video,
   CheckSquare,
-  Download,
 } from 'lucide-react';
 import { useHealthData } from '../context/HealthDataContext';
 import { VitalCard } from './VitalCard';
@@ -68,13 +67,6 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ onNavigate }) => {
 
         {/* Device Status Badge & Code Access */}
         <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-          <button
-            onClick={() => onNavigate('code')}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-lg transition-colors font-sans font-medium"
-          >
-            <Download className="w-3.5 h-3.5 text-emerald-500" />
-            Descargar .ZIP
-          </button>
           <div className="px-3 py-1.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg">
             <span className="text-slate-400">DISPOSITIVO: </span>
             <span className="text-cyan-600 dark:text-cyan-400 font-bold">{device.model}</span>

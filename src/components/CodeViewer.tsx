@@ -1,22 +1,11 @@
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
- * BAYX Health Monitor - Interactive Code Viewer & Git / GitHub Guide
+ * BAYX Health Monitor - Interactive Code Viewer
  */
 
 import React, { useState } from 'react';
-import {
-  Download,
-  FileCode,
-  Folder,
-  Copy,
-  Check,
-  Github,
-  ExternalLink,
-  Code2,
-  Terminal,
-  HelpCircle,
-} from 'lucide-react';
+import { FileCode, Copy, Check } from 'lucide-react';
 
 interface ProjectFile {
   path: string;
@@ -76,18 +65,16 @@ export const TaskManager = () => {
 // https://.../api/iot/telemetry`,
   },
   {
-    path: 'vercel.json',
-    category: 'Configuraciones',
-    description: 'Configuración para despliegue automático y funciones serverless en Vercel',
-    content: `{
-  "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api" },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
-}`,
+    path: 'src/context/HealthDataContext.tsx',
+    category: 'Frontend',
+    description: 'Estado de signos vitales y sincronización en tiempo real con el servidor',
+    content: `// Suscripción a los eventos enviados por el servidor
+const events = new EventSource('/api/iot/events');
+
+events.addEventListener('telemetry', (event) => {
+  const telemetry = JSON.parse(event.data);
+  // Actualiza signos vitales, estado del dispositivo y alertas
+});`,
   },
 ];
 
@@ -103,77 +90,15 @@ export const CodeViewer: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Download & GitHub Overview Card */}
-      <div className="p-6 bg-gradient-to-r from-slate-900 via-cyan-950 to-slate-900 border border-cyan-500/30 rounded-xl text-white shadow-md">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-cyan-400 font-mono text-xs uppercase font-semibold">
-              <Github className="w-4 h-4" />
-              Acceso Directo al Código & Descarga
-            </div>
-            <h2 className="text-xl font-bold mt-1">
-              Descarga tu proyecto completo en archivo .ZIP
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl">
-              Aquí tienes todo el código fuente listo para usar en tu computadora. Puedes descargarlo en un solo clic o ver las instrucciones para crear tu repositorio en GitHub sin comandos difíciles.
-            </p>
-          </div>
-
-          <a
-            href="/bayx-health-monitor.zip"
-            download="bayx-health-monitor.zip"
-            className="flex items-center gap-2 px-5 py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs sm:text-sm rounded-xl transition-all shadow-lg hover:shadow-cyan-500/20 whitespace-nowrap shrink-0"
-          >
-            <Download className="w-4 h-4" />
-            Descargar Código en .ZIP (855 KB)
-          </a>
-        </div>
-      </div>
-
-      {/* Guide: ¿Por qué la IA no puede crear el repo en tu GitHub directamente? */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="p-5 bg-white dark:bg-[#0e131f] border border-slate-200 dark:border-slate-800 rounded-xl shadow-xs">
-          <div className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white pb-2 border-b border-slate-200 dark:border-slate-800">
-            <HelpCircle className="w-4 h-4 text-amber-500" />
-            ¿Por qué no puedo crear el repositorio por ti?
-          </div>
-          <p className="text-xs text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
-            GitHub requiere la <strong>clave o contraseña personal de tu cuenta</strong> por motivos de seguridad. Ninguna inteligencia artificial tiene acceso a tu usuario de GitHub personal ni permisos para crearte repositorios sin tus credenciales.
-          </p>
-          <p className="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
-            Sin embargo, ¡crearlo tú mismo toma <strong>menos de 1 minuto</strong> siguiendo los 3 pasos de la derecha!
-          </p>
-        </div>
-
-        {/* Step-by-Step 1-Minute GitHub Creation */}
-        <div className="p-5 bg-white dark:bg-[#0e131f] border border-slate-200 dark:border-slate-800 rounded-xl shadow-xs">
-          <div className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white pb-2 border-b border-slate-200 dark:border-slate-800">
-            <Github className="w-4 h-4 text-cyan-500" />
-            Cómo subirlo a tu GitHub en 3 pasos (Sin Terminal)
-          </div>
-          <ol className="text-xs text-slate-600 dark:text-slate-300 space-y-2 mt-3 list-decimal list-inside leading-relaxed">
-            <li>
-              Descarga el archivo <strong>.ZIP</strong> con el botón azul de arriba y descomprímelo en tu computadora.
-            </li>
-            <li>
-              Entra a <a href="https://github.com/new" target="_blank" rel="noreferrer" className="text-cyan-600 dark:text-cyan-400 font-bold underline inline-flex items-center gap-0.5">github.com/new <ExternalLink className="w-3 h-3" /></a>, escribe de nombre <code className="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-cyan-500 font-mono">bayx-health-monitor</code> y pulsa <strong>Create repository</strong>.
-            </li>
-            <li>
-              En la pantalla que aparece, haz clic en el enlace azul <strong>"uploading an existing file"</strong> y arrastra todos los archivos de la carpeta descomprimida. ¡Listo! Ya tienes tu repositorio público y con link propio.
-            </li>
-          </ol>
-        </div>
-      </div>
-
       {/* Interactive In-App Code Explorer */}
       <div className="p-5 bg-white dark:bg-[#0e131f] border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 gap-3">
           <div className="flex items-center gap-2">
             <FileCode className="w-5 h-5 text-cyan-500" />
             <div>
-              <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
-                Explorador de Archivos del Proyecto
-              </h3>
+              <h2 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
+                Código fuente
+              </h2>
               <p className="text-xs text-slate-500">{selectedFile.description}</p>
             </div>
           </div>

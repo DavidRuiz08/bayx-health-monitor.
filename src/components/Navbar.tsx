@@ -15,7 +15,6 @@ import {
   Radio,
   Bell,
   Cpu,
-  Download,
   Code2,
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
@@ -117,7 +116,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange }) => {
             }`}
           >
             <Code2 className="w-3.5 h-3.5" />
-            Código & ZIP
+            Código fuente
           </button>
 
           <button
@@ -199,17 +198,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange }) => {
             )}
           </div>
 
-          {/* Direct Download ZIP Button */}
-          <a
-            href="/bayx-health-monitor.zip"
-            download="bayx-health-monitor.zip"
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-semibold shadow-xs transition-colors whitespace-nowrap shrink-0"
-            title="Descargar todo el código en .ZIP"
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Descargar .ZIP</span>
-          </a>
-
           {/* Primary Action Button (Zone 3) */}
           <button
             onClick={() => onTabChange('hardware')}
@@ -251,7 +239,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange }) => {
           onClick={() => onTabChange('code')}
           className={`py-1 ${activeTab === 'code' ? 'text-cyan-600 dark:text-cyan-400 font-bold' : 'text-slate-600 dark:text-slate-400'}`}
         >
-          Código ZIP
+          Código
         </button>
       </div>
     </header>
