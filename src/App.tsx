@@ -15,7 +15,6 @@ import { TaskManager } from './components/TaskManager';
 import { HistoryAnalytics } from './components/HistoryAnalytics';
 import { HardwareApiGuide } from './components/HardwareApiGuide';
 import { AlertsCenter } from './components/AlertsCenter';
-import { CodeViewer } from './components/CodeViewer';
 
 function MainLayout() {
   const [activeTab, setActiveTab] = useState<NavTab>('dashboard');
@@ -31,7 +30,6 @@ function MainLayout() {
         {activeTab === 'history' && <HistoryAnalytics />}
         {activeTab === 'hardware' && <HardwareApiGuide />}
         {activeTab === 'alerts' && <AlertsCenter />}
-        {activeTab === 'code' && <CodeViewer />}
       </main>
     </div>
   );

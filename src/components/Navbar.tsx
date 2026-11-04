@@ -11,17 +11,14 @@ import {
   Moon,
   Activity,
   User as UserIcon,
-  Shield,
   Radio,
-  Bell,
   Cpu,
-  Code2,
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
 import { useHealthData } from '../context/HealthDataContext';
 
-export type NavTab = 'dashboard' | 'camera' | 'tasks' | 'history' | 'hardware' | 'alerts' | 'code';
+export type NavTab = 'dashboard' | 'camera' | 'tasks' | 'history' | 'hardware' | 'alerts';
 
 interface NavbarProps {
   activeTab: NavTab;
@@ -105,18 +102,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange }) => {
             }`}
           >
             Hardware & POST
-          </button>
-
-          <button
-            onClick={() => onTabChange('code')}
-            className={`flex items-center gap-1 transition-colors whitespace-nowrap shrink-0 hover:text-cyan-600 dark:hover:text-cyan-400 ${
-              activeTab === 'code'
-                ? 'text-cyan-600 dark:text-cyan-400 font-bold'
-                : ''
-            }`}
-          >
-            <Code2 className="w-3.5 h-3.5" />
-            Código fuente
           </button>
 
           <button
@@ -234,12 +219,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange }) => {
           className={`py-1 ${activeTab === 'hardware' ? 'text-cyan-600 dark:text-cyan-400 font-bold' : 'text-slate-600 dark:text-slate-400'}`}
         >
           ESP32 POST
-        </button>
-        <button
-          onClick={() => onTabChange('code')}
-          className={`py-1 ${activeTab === 'code' ? 'text-cyan-600 dark:text-cyan-400 font-bold' : 'text-slate-600 dark:text-slate-400'}`}
-        >
-          Código
         </button>
       </div>
     </header>
